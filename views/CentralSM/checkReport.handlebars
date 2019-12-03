@@ -1,0 +1,55 @@
+ 
+<div class="container mt-4">
+    {{> _csm}}
+    <div class="dropdown col-sm-8">
+  <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Branch Name
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Megnaga</a>
+    <a class="dropdown-item" href="#">Stadium</a>
+    <a class="dropdown-item" href="#">Kality</a>
+  </div>
+</div>
+</div>  
+<div class="col-sm-4 ml-auto" >
+     <button class="btn btn-default btn-light btn-sm" type="button" >Reported Date
+ </button></div>
+ 
+ <div class=" card card-body  ml-auto bg-dark">
+
+     <!-- your cood goes here  -->
+    <table class="table table-bordered table-light table-hover">
+  <thead class="table-primary">
+    <tr >
+      <th scope="col">Menu Item Name</th>
+      <th scope="col">Number Sold</th>
+      <th scope="col">unit price</th>
+      <th scope="col">Total Price</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each report}}
+    <tr>
+   
+      <td>{{MenuItem}}</td>
+      <td>{{NumberSold}}</td>
+      <td>{{unitprice}}</td>
+       <td>{{Totalprice}}</td>
+    </tr>
+    {{else}}
+    {{/each}}
+  
+  </tbody>
+</table>
+  <!--/end -->
+        </div>
+ </div>
+    </div>
+   
+    </div>
+  </div>
+
+</div>
+
