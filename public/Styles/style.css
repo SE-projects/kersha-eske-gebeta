@@ -1,3 +1,14 @@
-.active{
-  color: #000 !important ; 
+.menu_Button:hover{
+  background-color:#bea62a ;
+  color: #343a40;
+}
+.menu_Button{
+  background-color: #343a40; 
+  color :aliceblue;
+}
+.carousel-caption {
+  top: 0;
+  bottom: auto;
+  font-family: Courier;
+  margin:10px 0;
 }
