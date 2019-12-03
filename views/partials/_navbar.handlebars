@@ -8,6 +8,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="Content">
+
             <ul class="navbar-nav ml-auto">
                 {{#if HomePage}}
                 <li class="nav-item active">
@@ -28,24 +29,38 @@
                 {{/if}}
 
                 {{#if CSMfullName}}
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link btn-lg dropdown-toggle" href="#" id="navbarDropdown"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        {{CSMfullName}}
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#">Change Profile</a>
-                                        <a class="dropdown-item" href="#">Change Password</a>
-                                        <a class="dropdown-item" href="#">Manage Employee</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Logout</a>
-                                    </div>
-                                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link btn-lg dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{CSMfullName}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" data-toggle="modal" data-target="#ChangeProfile">Change Profile</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#ChangePassword">Change Password</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#ManageEmployee">Manage Employee</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
+
+                <!-- Change Profile modal-->
+                {{> _changeProfile}}
+                <!-- end of change profile modal -->
+
+                <!-- Change Password modal-->
+                {{> _changePassword}}
+
+                <!-- end of change Password modal -->
+
+                <!-- Manage Employee  modal-->
+                {{> _manageAccount}}
+                <!-- end of Manage Employee modal -->
                 {{/if}}
 
-                
+
             </ul>
 
         </div>
+
     </div>
 </nav>
