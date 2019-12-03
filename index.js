@@ -67,11 +67,11 @@ app.get('/Menu', (req,res)=>{
         totalmenus_Burger:totalmenus_Burger, 
         totalmenus_Pizza : totalmenus_Burger, 
         totalmenus_Drink : totalmenus_Drink,
-        HomePage:"Homepage called"
+        HomePage:home
     })
 }); 
 app.get('/', (req,res)=>{
-    res.render('Home',{
+    res.render('HomePages/Home',{
         HomePage:home
     })
 });
