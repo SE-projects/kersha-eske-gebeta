@@ -1,0 +1,40 @@
+<!--for now we gest post randome data  when we work on the back end it gona change-->
+
+<div class="row">
+    <div class="col">
+        {{#each totalmenus_Burger}}
+        <div class="card card-body mb-1 mt-2">
+            <img src="{{imageSource}}" style="height: 150px; width:150px">
+            <p class="ml-auto" style="font-size: 30px;color:#fc7171; ">{{unitPrice}}</p>
+            <h4>{{dishName}}</h4>
+            <p>{{discription}}</p>
+        </div>
+        {{else}}
+        <p class="mt-3">There are no Burgers provided for today!!! Please visit us later</p>
+        {{/each}}
+    </div>
+    <div class="col">
+        {{#each totalmenus_Pizza}}
+        <div class="card card-body mb-1 mt-2">
+            <img src="{{imageSource}}" style="height: 150px; width:150px">
+            <p class="ml-auto" style="font-size: 30px;color:#fc7171; ">{{unitPrice}}</p>
+            <h4>{{dishName}}</h4>
+            <p>{{discription}}</p>
+        </div>
+        {{else}}
+        <p>There are no Pizzas provided for today!!! Please visit us later</p>
+        {{/each}}
+    </div>
+    <div class="col">
+        {{#each totalmenus_Drink}}
+        <div class="card card-body mb-1 mt-2">
+            <img src="{{imageSource}}" style="height: 150px; width:150px">
+            <p class="ml-auto" style="font-size: 30px;color:#fc7171; ">{{unitPrice}}</p>
+            <h4>{{dishName}}</h4>
+            <p>{{discription}}</p>
+        </div>
+        {{else}}
+        <p>There are no Drinks provided for today!!! Please visit us later</p>
+        {{/each}}
+    </div>
+</div>

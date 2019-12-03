@@ -29,6 +29,7 @@
                 {{/if}}
 
                 {{#if CSMfullName}}
+                 <li> <img src="img/profile.png" class="rounded-circle " style="height: 40px; width:40px" alt="user"> </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link btn-lg dropdown-toggle" href="#" id="navbarDropdown"
                                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -44,6 +45,32 @@
                                 </li>
                             
                 {{/if}}
+                {{#if casherfullName}}
+              <li class="nav-item active">
+                    <a class="nav-link" href="/casher_customerOrder">Customer Orders <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Casher_NewOrder">New Order</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Casher_Report">Report</a>
+                </li>
+                <li> <img src="img/profile.png" class="rounded-circle " style="height: 40px; width:40px" alt="user"> </li>
+             <li class="nav-item dropdown ">
+                                    <a class="nav-link btn-lg dropdown-toggle" href="#" id="navbarDropdown"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      {{casherfullName}}
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="#">Change Profile</a>
+                                        <a class="dropdown-item" href="#">Change Password</a>
+                                
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Logout</a>
+                                    </div>
+                                </li>
+                {{/if}}
+
 
                 
             </ul>
