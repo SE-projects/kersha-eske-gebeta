@@ -136,7 +136,10 @@ app.get('/casher_customerOrder',(req,res)=>{
   //casher-neworder route 
   app.get('/Casher_NewOrder',(req,res)=>{
     res.render('casher/newOrder',{
-        casherfullName:casherfullName
+        casherfullName:casherfullName,
+        totalmenus_Burger:totalmenus_Burger, 
+        totalmenus_Pizza : totalmenus_Pizza, 
+        totalmenus_Drink : totalmenus_Drink
     })
  });
  //casher -report route 
