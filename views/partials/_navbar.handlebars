@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-0 mb-0">
     <div class="container-fluid">
-        <a class="navbar-brand py-0" href="/"><img src="./img/Logo.png" style="max-height: 90px;"
+        <a class="navbar-brand py-0" href="/"><img src="/img/Logo.png" style="max-height: 90px;"
                 alt="Kersha Eske Gebeta"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Content"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,6 +57,8 @@
                 {{> _manageAccount}}
                 <!-- end of Manage Employee modal -->
                 {{/if}}
+
+
                 {{#if casherfullName}}
               <li class="nav-item active">
                     <a class="nav-link" href="/casher_customerOrder">Customer Orders <span class="sr-only">(current)</span></a>
@@ -83,6 +85,98 @@
                                 </li>
                 {{/if}}
 
+
+
+                
+                {{#if shopSMfullName}}
+                     <li> <img src="/img/profile.png" class="rounded-circle " style="height: 40px; width:40px" alt="user"> </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link btn-lg dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{shopSMfullName}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" data-toggle="modal" data-target="#ChangeProfile">Change Profile</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#ChangePassword">Change Password</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#ManageEmployee">Manage Employee</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
+
+                <!-- Change Profile modal-->
+                {{> _changeProfile}}
+                <!-- end of change profile modal -->
+
+                <!-- Change Password modal-->
+                {{> _changePassword}}
+
+                <!-- end of change Password modal -->
+
+                <!-- Manage Employee  modal-->
+                {{> _manageAccount}}
+                <!-- end of Manage Employee modal -->
+                {{/if}}
+
+                {{#if logisticfullname}}
+
+                <li> <img src="/img/profile.png" class="rounded-circle " style="height: 40px; width:40px" alt="user"> </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link btn-lg dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{logisticfullname}}
+                        </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" data-toggle="modal" data-target="#ChangeProfile">Change Profile</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#ChangePassword">Change Password</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
+
+                <!-- Change Profile modal-->
+                {{> _changeProfile}}
+                <!-- end of change profile modal -->
+
+                <!-- Change Password modal-->
+                {{> _changePassword}}
+
+                <!-- end of change Password modal -->
+
+                {{/if}}
+
+
+               {{#if customerfullname}}
+                     <li> <img src="/img/profile.png" class="rounded-circle " style="height: 40px; width:40px" alt="user"> </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link btn-lg dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{customerfullname}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" data-toggle="modal" data-target="#ViewCharts">View Charts</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#ChangeProfile">Change Profile</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#ChangePassword">Change Passward</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
+
+                <!-- view charts modal-->
+                {{> _viewCharts}}
+                <!-- end of view charts modal -->
+
+                   <!-- Change Profile modal-->
+                {{> _changeProfile}}
+                <!-- end of change profile modal -->
+
+
+                 <!-- Change Password modal-->
+                {{> _changePassword}}
+
+                <!-- end of change Password modal -->
+
+                {{/if}}
 
 
             </ul>
