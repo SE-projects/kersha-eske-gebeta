@@ -197,6 +197,7 @@ app.get('/viewOrderofCSM',(req,res)=>{
        
     });
   });
+
    //logistic  --orders from purcheser route 
  app.get('/viewOrdersOfpurcheser',(req,res)=>{
     res.render('Logistic/viewOrdersOfpurcheser',{
@@ -224,23 +225,20 @@ app.get('/viewOrderofCSM',(req,res)=>{
     })
  });
  
-
-
-
 //SSM--order route
 app.get('/orders',(req,res)=>{
     let orders=[{
       SortOrder:1,
-      DishName:"corn_soup",
-      takeAway:"yes",
-      Done:"yes"
+      DishName:'corn_soup',
+      takeAway:'yes',
+      Done:'yes'
 
     },
     {
       SortOrder:2,
-      DishName:"Burger",
-      takeAway:"yes",
-      Done:"yes"
+      DishName:'Burger',
+      takeAway:'no',
+      Done:'yes'
 
   
       },
@@ -279,35 +277,41 @@ app.get('/reportsfromcashier',(req,res)=>{
  });
 
 
+
  //sample data .... later changed when we finish our databse 
 
- let rowMaterial =[{
-    materialName:'Carrot', 
-    imageSource : '/img/row material/carrot.jpg', 
-    amaount: '50 kilo',
-    
-    
-}, {
-    materialName:'Onion', 
-    imageSource : "/img/row material/onion.jpg", 
-    amaount: '70 kilo',
-    
-}
-];
+ app.get('/sendorders',(req,res)=>{
+    let sendorders=[{
+      SortOrder:1,
+      Name:"carrot",
+      amount:'50 kilo'
 
+    },
+    {
+      SortOrder:2,
+      Name:'onion',
+      amount:'10 kilo'
 
-app.get('/shopSM/sendorders',(req,res)=>{
-    //res.render('shopSM/sendorders',{
-      //  shopSMfullName:shopSMfullName
-//
-   // });
-  //});
   
-    res.render('shopSM/sendorders', {
-        rowMaterial:rowMaterial
-        
-    })
+      },
+      {
+        SortOrder:3,
+        Name:'salad',
+        amount:'7 kilo'
+    
+  
+    
+        }
+  ]
+
+  res.render('shopSM/sendorders',{
+        sendorders:sendorders,
+        shopSMfullName:shopSMfullName
+
+  }
+      );
 });
+
 
  
 

@@ -1,12 +1,34 @@
 <div class="container mt-4">
+
     {{> _ssm}}
 
- <div class=" card card-body  ml-auto bg-dark">
+    <div class=" card card-body  ml-auto bg-dark">
 
      <!-- your cood goes here  -->
 
-     
-    
+    <table class="table table-bordered table-light table-hover">
+  <thead class="table-primary">
+    <tr >
+      <th scope="col">Sort Order</th>
+      <th scope="col">Name</th>
+      <th scope="col">ammount</th>
+   
+    </tr>
+  </thead>
+  <tbody>
+      {{#each sendorders}}
+    <tr>
+   
+      <td>{{SortOrder}}</td>
+      <td>{{Name}}</td>
+      <td>{{ammount}}</td>
+   
+    </tr>
+    {{else}}
+    {{/each}}
+  
+  </tbody>
+</table>
   <!--/end -->
         </div>
  </div>
@@ -16,4 +38,3 @@
   </div>
 
 </div>
-
