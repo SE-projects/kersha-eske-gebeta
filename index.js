@@ -7,8 +7,12 @@ const app = express();
 const CSMfullName="central Manager";
 const home="home";
 const casherfullName="casherfullName";
+const shopSMfullName="shopSMfullName";
+const customerfullname="customerfullname";
+const logisticfullname="logisticfullname";
 
 //sample data it ..later we will change this to the data fetched from database
+
 let totalmenus_Burger =[{
     dishName:"Cheezy Crunch Burger", 
     imageSource : "./img/TotalMenus/CheezyCrunchBurger.jpg", 
@@ -48,6 +52,7 @@ let totalmenus_Drink =[{
     discription: "2 Spicy, crunchy mini fillets with 2 chesse slices, lettuce & tomato coverd in tangy dressing on a burger bun."
      
 }];
+
 //end of sample data..
 
 //Middle Wares
@@ -80,12 +85,14 @@ app.get('/', (req,res)=>{
     })
 });
 
+
 //the centeral storage manager route
  app.get('/csm',(req,res)=>{
     res.render('centra-sm',{
         CSMfullName:CSMfullName
     });
   });
+
 
 //CSM--checkReport route
 app.get('/checkReport',(req,res)=>{
@@ -111,6 +118,7 @@ app.get('/checkReport',(req,res)=>{
   }
       );
 });
+
 //CSM--order route 
 app.get('/order',(req,res)=>{
     res.render('CentralSM/order',{
@@ -145,7 +153,178 @@ app.get('/casher_customerOrder',(req,res)=>{
         casherfullName:casherfullName
     })
  });
+
+
+
+//logistic 
+//SSM
+//customer 
+
+
+
+
+//sample data ....
+
+app.get('/viewOrdersOfDeliveryAgent',(req,res)=>{
+    let ordersfrom=[{
+      
+        DestinationPlace:'Bole',
+        NumberOfCars:5,
+        ArrivalTime:'10:54 AM',
+        DestinationTime:'11:05 AM'
+    },
+    {
+        DestinationPlace:'4-kil0',
+        NumberOfCars:5,
+        ArrivalTime:'1:54 AM',
+        DestinationTime:'1:05 AM'
+  
+      }
+]
+  res.render('Logistic/viewOrdersOfDeliveryAgent',{
+        ordersfrom:ordersfrom,
+        logisticfullname:logisticfullname
+
+  }
+      );
+});
+
+//logistic ---orders from CSM route 
+
+app.get('/viewOrderofCSM',(req,res)=>{
+    res.render('Logistic/viewOrderofCSM',{
+        logisticfullname:logisticfullname
+       
+    });
+  });
+   //logistic  --orders from purcheser route 
+ app.get('/viewOrdersOfpurcheser',(req,res)=>{
+    res.render('Logistic/viewOrdersOfpurcheser',{
+        logisticfullname:logisticfullname
+    })
+ });
  
+ 
+
+ // customer 
+
+ app.get('/customer/vieworder',(req,res)=>{
+    res.render('customer/viewOrders',{
+        customerfullname:customerfullname,
+        totalmenus_Burger:totalmenus_Burger, 
+        totalmenus_Pizza : totalmenus_Pizza, 
+        totalmenus_Drink : totalmenus_Drink
+    })
+ });
+
+
+ app.get('/customer/comment',(req,res)=>{
+    res.render('customer/comment',{
+        customerfullname:customerfullname
+    })
+ });
+ 
+
+
+
+//SSM--order route
+app.get('/orders',(req,res)=>{
+    let orders=[{
+      SortOrder:1,
+      DishName:"corn_soup",
+      takeAway:"yes",
+      Done:"yes"
+
+    },
+    {
+      SortOrder:2,
+      DishName:"Burger",
+      takeAway:"yes",
+      Done:"yes"
+
+  
+      },
+      {
+        SortOrder:3,
+        DishName:"pizza",
+        takeAway:"yes",
+        Done:"yes"
+  
+    
+        }
+  ]
+
+  res.render('shopSM/orders',{
+        orders:orders,
+        shopSMfullName:shopSMfullName
+
+  }
+      );
+});
+
+ 
+//shopSM--reportfromcashier route 
+
+app.get('/reportsfromcashier',(req,res)=>{
+    res.render('shopSM/reportsfromcashier',{
+        shopSMfullName:shopSMfullName
+       
+    });
+  });
+   //shopSM -order route 
+ app.get('/shopSM/orders',(req,res)=>{
+    res.render('shopSM/orders',{
+        shopSMfullName:shopSMfullName
+    })
+ });
+
+
+ //sample data .... later changed when we finish our databse 
+
+ let rowMaterial =[{
+    materialName:'Carrot', 
+    imageSource : '/img/row material/carrot.jpg', 
+    amaount: '50 kilo',
+    
+    
+}, {
+    materialName:'Onion', 
+    imageSource : "/img/row material/onion.jpg", 
+    amaount: '70 kilo',
+    
+}
+];
+
+
+app.get('/shopSM/sendorders',(req,res)=>{
+    //res.render('shopSM/sendorders',{
+      //  shopSMfullName:shopSMfullName
+//
+   // });
+  //});
+  
+    res.render('shopSM/sendorders', {
+        rowMaterial:rowMaterial
+        
+    })
+});
+
+ 
+
+//shopSM--SendOrders route 
+app.get('/sendorders',(req,res)=>{
+    res.render('shopSM/sendorders',{
+        shopSMfullName:shopSMfullName
+
+    });
+  });
+  //shopSM--register route 
+app.get('/registeration',(req,res)=>{
+    res.render('shopSM/registeration',{
+        shopSMfullName:shopSMfullName
+
+    });
+  });
 
 const port = 3000;
 app.listen(port,()=>{

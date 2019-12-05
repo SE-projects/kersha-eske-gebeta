@@ -1,0 +1,40 @@
+<div class="container mt-4">
+
+    {{> _ssm}}
+
+    <div class=" card card-body  ml-auto bg-dark">
+
+     <!-- your cood goes here  -->
+
+    <table class="table table-bordered table-light table-hover">
+  <thead class="table-primary">
+    <tr >
+      <th scope="col">Sort Order</th>
+      <th scope="col">Dish Name</th>
+      <th scope="col">Take Away</th>
+      <th scope="col">Done</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each orders}}
+    <tr>
+   
+      <td>{{SortOrder}}</td>
+      <td>{{DishName}}</td>
+      <td>{{TakeAway}}</td>
+       <td>{{Done}}</td>
+    </tr>
+    {{else}}
+    {{/each}}
+  
+  </tbody>
+</table>
+  <!--/end -->
+        </div>
+ </div>
+    </div>
+   
+    </div>
+  </div>
+
+</div>
