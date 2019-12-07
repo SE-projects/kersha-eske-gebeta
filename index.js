@@ -79,12 +79,20 @@ app.get('/Menu', (req,res)=>{
         HomePage:home
     })
 }); 
+    //Home Route
 app.get('/', (req,res)=>{
     res.render('HomePages/Home',{
         HomePage:home
     })
 });
 
+
+   //Homepage Login route
+app.get('/Login', (req,res)=>{
+    res.render('HomePages/login',{
+        HomePage:home
+    })
+});
 
 //the centeral storage manager route
  app.get('/csm',(req,res)=>{
