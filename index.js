@@ -211,6 +211,21 @@ app.get('/viewOrderofCSM',(req,res)=>{
 
    //logistic  --orders from purcheser route 
  app.get('/viewOrdersOfpurcheser',(req,res)=>{
+    let ordersfrom=[{
+      
+        DestinationPlace:'merekato',
+        NumberOfCars:5,
+        ArrivalTime:'10:54 AM',
+        DestinationTime:'11:05 AM'
+    },
+    {
+        DestinationPlace:'merekato',
+        NumberOfCars:3,
+        ArrivalTime:'1:54 AM',
+        DestinationTime:'1:05 AM'
+  
+      }
+]
     res.render('Logistic/viewOrdersOfpurcheser',{
         logisticfullname:logisticfullname
     })

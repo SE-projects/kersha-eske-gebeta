@@ -75,14 +75,17 @@
                                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                       {{casherfullName}}
                                     </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#">Change Profile</a>
-                                        <a class="dropdown-item" href="#">Change Password</a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                       <a class="dropdown-item" data-toggle="modal" data-target="#ChangeProfile">Change Profile</a>
+                                       <a class="dropdown-item" data-toggle="modal" data-target="#ChangePassword">Change Password</a>
                                 
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="#">Logout</a>
                                     </div>
                                 </li>
+                                 {{> _changeProfile}}
+                                 {{> _changePassword}}
+
                 {{/if}}
 
 
