@@ -1,0 +1,51 @@
+ 
+ <div class="row">
+<div class="col" >
+    <div class="container mt-4" style="margin: 1px; width: 100%; height:700px;">
+    {{> _march}}
+    </div></div>
+<!-- Editable table -->
+<div class="col mt-5">
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Uploaded Items</h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
+            class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <thead>
+          <tr>
+            <th class="text-center">Name of item</th>
+            <th class="text-center">Amount</th>
+            <th class="text-center">Expire date</th>
+            <th class="text-center">Description</th>
+            <th class="text-center">Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+      
+          
+           {{#each UploadedItems}}
+    <tr>
+   
+      <td>{{name}}</td>
+      <td>{{amount}}{{measuredIn}}</td>
+      <td>{{expireDate}} </td>
+       <td>{{description}}</td>
+         <td>
+              <span class="table-remove"><button type="button"
+                  class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+            </td>
+    </tr> 
+    {{else}}
+    {{/each}}
+          
+          </tr>       
+        </tbody>
+      </table>
+    </div></div>
+  </div>
+</div></div>
+<!-- Editable table -->
+</div>
+

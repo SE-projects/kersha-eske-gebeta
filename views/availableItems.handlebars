@@ -1,0 +1,80 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.row{
+border-spacing: 10px;
+}
+.col{
+  border-spacing: 10px;
+  bo
+}
+</style>
+</head>
+<body>
+  <div>
+    <h3 class="orders" style="margin: 60px; color:blank; font-size:40px">Orders</h3>
+  </div>
+<div class="row" style="margin: 40px;">
+
+<div class="col">   
+        {{#each requested_items}}
+        <div class="row">
+          <div>
+            <img src="{{imageSource}}" style="height: 120px; width:150px">
+            </div>
+            <div class="col">
+            <div>
+            <h4  style="font-size: 20px;color:black;">{{name}}</h4>
+        </div>
+        
+          <div>
+            <p style="font-size: 20px;color:black; ">{{amount}}</p>    
+          </div>
+
+          </div>
+
+        </div>
+        {{/each}}
+  </div>
+ 
+  <div class="col">
+
+            <form class="form-inline my-2 my-lg-0">
+       <input class="form-control mr-sm-2" id="searchText" type="search" placeholder="Search product" aria-label="Search">
+     
+    <div><a href="/availableItems" type="button" role="button" class="btn fa fa-search"></a></div>
+    </form>
+    
+   {{#each tomato}}        
+        <div class="card card-body mb-1 mt-2">
+          <div class="row">
+      
+          <div class="col">
+            <div class="row">
+          
+            <p style="font-size: 30px;color:darkslategray;">{{shopeName}}</p>
+            </div>
+            <div class="row">
+            <p  style="font-size: 20px;color:dodgerblue;"> {{amount}} {{measuredIn}} available.</p>
+            </div>  </div>  </div>
+           <p  style="font-size: 15px;color:#fc7171; "> Price per killogram: {{amount}}</p>
+           <p  style="font-size: 15px;color:brown;">Address:{{shopeAddress}} </p>
+            <p  style="font-size: 20px;color:brown; "> Tellephone: {{merchantAddress}}</p>
+            <div class="col">
+           
+              {{!-- <br> --}}
+              <input type ="checkbox" name="comment"style="height:30px;width:30px"class "filled in"id="filled in box">>
+                <br>
+                 <label for ="allow comment" style="color:brown;">selected </label>
+              
+            </div>    
+            <br>  
+        </div>
+        {{/each}}
+  </div>
+</div>
+
+</body>
+
+  
+}

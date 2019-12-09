@@ -27,13 +27,59 @@
                     <a class="nav-link" href="/Contact">Contact</a>
                 </li>
                 {{/if}}
+                
+                
 
-                {{#if CSMfullName}}
+                <!--this is for the navigation bar of purchser page-->
+                {{#if purchaserfullName}}
+           
+                <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/CSMOrders">CSM Orders<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Request">Request</a>
+                </li>
+                
+              <li> <img src="img/profile.png" class="rounded-circle " style="height: 40px; width:40px" alt="user"> </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link btn-lg dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{purchaserfullName}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" data-toggle="modal" data-target="#ChangeProfile">Change Profile</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#ChangePassword">Change Password</a>
+                      
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>  
+               </ul>
+               </div>>
+                                <!-- Change Profile modal-->
+                {{> _changeProfile}}
+                <!-- end of change profile modal -->
+
+                <!-- Change Password modal-->
+                {{> _changePassword}}
+
+                <!-- end of change Password modal -->            
+                {{/if}}
+
+
+
+
+
+                {{#if SSMfullName}}
+
+               
                   <li> <img src="img/profile.png" class="rounded-circle " style="height: 40px; width:40px" alt="user"> </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link btn-lg dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{CSMfullName}}
+                        {{SSMfullName}}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" data-toggle="modal" data-target="#ChangeProfile">Change Profile</a>
@@ -57,6 +103,80 @@
                 {{> _manageAccount}}
                 <!-- end of Manage Employee modal -->
                 {{/if}}
+
+
+
+
+
+
+
+                {{#if MerchantName}}
+                  <li> <img src="img/profile.png" class="rounded-circle " style="height: 40px; width:40px" alt="user"> </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link btn-lg dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{MerchantName}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" data-toggle="modal" data-target="#ChangeProfile">Change Profile</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#ChangePassword">Change Password</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#ManageEmployee">Manage Employee</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
+      
+                <!-- Change Profile modal-->
+                {{> _changeProfile}}
+                <!-- end of change profile modal -->
+
+                <!-- Change Password modal-->
+                {{> _changePassword}}
+
+                <!-- end of change Password modal -->
+
+                <!-- Manage Employee  modal-->
+                {{> _manageAccount}}
+                <!-- end of Manage Employee modal -->
+                {{/if}}
+
+
+
+
+
+
+
+
+                {{#if CSMfullName}}
+                  <li> <img src="img/profile.png" class="rounded-circle " style="height: 40px; width:40px" alt="user"> </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link btn-lg dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{CSMfullName}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" data-toggle="modal" data-target="#ChangeProfile">Change Profile</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#ChangePassword">Change Password</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#ManageEmployee">Manage Employee</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
+      
+                <!-- Change Profile modal-->
+                {{> _changeProfile}}
+                <!-- end of change profile modal -->
+
+                <!-- Change Password modal-->
+                {{> _changePassword}}
+
+                <!-- end of change Password modal -->
+
+                <!-- Manage Employee  modal-->
+                {{> _manageAccount}}
+                <!-- end of Manage Employee modal -->
+                {{/if}}
+
                 {{#if casherfullName}}
               <li class="nav-item active">
                     <a class="nav-link" href="/casher_customerOrder">Customer Orders <span class="sr-only">(current)</span></a>
@@ -82,7 +202,6 @@
                                     </div>
                                 </li>
                 {{/if}}
-
 
 
             </ul>

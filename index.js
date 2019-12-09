@@ -7,6 +7,127 @@ const app = express();
 const CSMfullName="central Manager";
 const home="home";
 const casherfullName="casherfullName";
+const purchaserfullName="purchaserfullName";
+const SSMfullName="SSMfullName";
+const MerchantName="MerchantName";
+
+
+//var amountInkillo;
+//sample data for ratings
+let ratings=[{
+
+name: "fiveStar",
+value: 123,
+///icon=
+},
+{
+
+    name: "foureStar",
+    value: 123,
+    ///icon=
+    },
+    {
+
+        name: "threeStar",
+        value: 123,
+        ///icon=
+        },
+        {
+
+            name: "twoStar",
+            value: 123,
+            ///icon=
+            },
+            {
+
+                name: "oneStar",
+                value: 123,
+                ///icon=
+                }]
+
+//sample data for uploaoded items for a single merchant
+let UploadedItems=[{
+name:"Onion",
+amount:200,
+measuredIn:"killograms",
+expireDate:"23/5/2015",
+description:"Description for the food"
+},
+{
+    name:"Carrots",
+    amount:400,
+    measuredIn:"killograms",
+    expireDate:"23/5/2015",
+    description:"Description for the food"
+    },
+    {
+        name:"Milk",
+        amount:100,
+        measuredIn:"litters",
+        expireDate:"23/5/2015",
+        description:"Description for the food"
+        }]
+
+                //sample data for products to be puschased iim gonna use for both orders and availabe products
+let onion =[{
+amount:34,
+shopeAddress: "Shone lesho mazoria",
+merchantAddress: "+25100000001",
+pricePerKillo: 30.00,
+
+},{
+    amount:21,
+    shopeAddress: "Ambaricho Wasara",
+    merchantAddress: "+25100000031",
+    pricePerKillo: 28.00,
+}
+]
+let carrot =[{
+    amount:70,
+    shopeAddress: "Shone lesho mazoria",
+    merchantAddress: "+25100000001",
+    pricePerKillo: 15.00,
+    
+    },{
+        amount:200,
+        shopeAddress: "Ambaricho Wasara",
+        merchantAddress: "+25100000031",
+        pricePerKillo: 20.00,
+    }
+    ]
+    let tomato =[{
+        shopeName:"Salfiso Supermarket",
+        amount:50,
+        measuredIn: "killograms",
+        shopeAddress: "Shone lesho mazoria",
+        merchantAddress: "+25100000001",
+        pricePerKillo: 30.00,
+        
+        },{
+            amount:56,
+            shopeAddress: "Ambaricho Wasara",
+            merchantAddress: "+25100000031",
+            pricePerKillo: 25.00,
+        }
+         ]
+//well  i changed my mind better to do separetly
+let requested_items =[{
+    name: "onion",
+    amount:"47 killo",
+    imageSource:"./img/requestedItems/shinkutt.jpg"
+
+}, { 
+    name: "tomato",
+    amount: "90 killo",
+    imageSource:"./img/requestedItems/download (1).jpg"
+    },{
+        name: "carrot",
+        amount: "100 killo",
+    imageSource:"./img/requestedItems/carot.jpg"
+    }
+    ]
+
+
 
 //sample data it ..later we will change this to the data fetched from database
 let totalmenus_Burger =[{
@@ -53,6 +174,7 @@ let totalmenus_Drink =[{
 //Middle Wares
 app.use(express.static('public'));
 
+
 app.engine('handlebars' , exphbs({
     defaultLayout: 'main'
 }));
@@ -80,7 +202,12 @@ app.get('/', (req,res)=>{
     })
 });
 
-//the centeral storage manager route
+
+
+
+
+
+  //the centeral storage manager route
  app.get('/csm',(req,res)=>{
     res.render('centra-sm',{
         CSMfullName:CSMfullName
@@ -94,7 +221,6 @@ app.get('/checkReport',(req,res)=>{
       NumberSold:6,
       unitprice:7,
       Totalprice:45
-
     },
     {
         MenuItem:"kali",
@@ -151,3 +277,61 @@ const port = 3000;
 app.listen(port,()=>{
     console.log(`listening to port ${port}...`); 
 });
+
+//Its related to pursher only
+  //the purchasers route
+  
+
+  app.get('/purshaser',(req,res)=>{
+    res.render('purchaser',{
+        purchaserfullName:purchaserfullName,
+        requested_items:requested_items,
+        tomato:tomato,
+        carrot:carrot,
+        onion:onion
+    });
+  });
+app.get('/CSM_Orders',(req,res)=>{
+    res.render('purchaser/CSMOrders',{
+        purchaserfullName:purchaserfullName
+        
+    });
+  });
+
+  app.get('/request',(req,res)=>{
+    res.render('purchaser/request',{
+        purchaserfullName:purchaserfullName
+    });
+  });
+
+  app.get('/ssmRegistor',(req,res)=>{
+    res.render('ssm_registor',{
+        SSMfullName:SSMfullName
+    });
+  });
+  
+  app.get('/viewRatings',(req,res)=>{
+    res.render('view_ratings',{
+        SSMfullName:SSMfullName
+    });
+  });
+  app.get('/merchant',(req,res)=>{
+    res.render('merchant',{
+        MerchantName:MerchantName
+    });
+  });
+  app.get('/viewItems',(req,res)=>{
+    res.render('viewItems',{
+        MerchantName:MerchantName,
+        UploadedItems:UploadedItems
+    });
+  });
+  app.get('/availableItems',(req,res)=>{
+    res.render('availableItems',{
+        purchaserfullName:purchaserfullName,
+        requested_items:requested_items,
+        tomato:tomato,
+        carrot:carrot,
+        onion:onion
+    });
+  });
