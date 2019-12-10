@@ -1,0 +1,44 @@
+<style>
+   body {
+  background: url('/img/login/background3.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+  .bg{
+    background-color: #373E44;
+  }
+</style>
+
+<div class="row backgroud">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-8 ">
+        <br><br><br>
+        <div class = "ml-4">
+        <h1 style="font-size:80px; color:#fff">Get You Delivery</h1>
+        <h1 style="font-size:80px; align-content:center;color: #fff;" class="ml-auto">Fast</h1>         
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 mt-4">
+        <div class="jumbotron text-center bg mt-4 mr-4">
+              
+                <img src="/img/login/login.png" height="50px">
+                <h1 >Login</h1><br>
+          <form method="POST" action = "/login">
+    <div class="form-group">
+      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="User Name">
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    
+    
+      <button type="button" class="btn btn-link" href = "#">Forget password?</button>
+     <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+  <p>Creat an account? <button class="btn btn-link" data-toggle="modal" data-target="#Signup">Signup</button></p>
+      {{> _signup}}
+    </div>
+</div>
+</div>

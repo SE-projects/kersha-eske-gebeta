@@ -7,6 +7,7 @@ const app = express();
 const CSMfullName="central Manager";
 const home="home";
 const casherfullName="casherfullName";
+
 const purchaserfullName="purchaserfullName";
 const SSMfullName="SSMfullName";
 const MerchantName="MerchantName";
@@ -128,8 +129,12 @@ let requested_items =[{
     ]
 
 
+const shopSMfullName="shopSMfullName";
+const customerfullname="customerfullname";
+const logisticfullname="logisticfullname";
 
 //sample data it ..later we will change this to the data fetched from database
+
 let totalmenus_Burger =[{
     dishName:"Cheezy Crunch Burger", 
     imageSource : "./img/TotalMenus/CheezyCrunchBurger.jpg", 
@@ -169,6 +174,7 @@ let totalmenus_Drink =[{
     discription: "2 Spicy, crunchy mini fillets with 2 chesse slices, lettuce & tomato coverd in tangy dressing on a burger bun."
      
 }];
+
 //end of sample data..
 
 //Middle Wares
@@ -196,6 +202,7 @@ app.get('/Menu', (req,res)=>{
         HomePage:home
     })
 }); 
+    //Home Route
 app.get('/', (req,res)=>{
     res.render('HomePages/Home',{
         HomePage:home
@@ -207,12 +214,24 @@ app.get('/', (req,res)=>{
 
 
 
+
   //the centeral storage manager route
+
+   //Homepage Login route
+app.get('/Login', (req,res)=>{
+    res.render('HomePages/login',{
+        HomePage:home
+    })
+});
+
+//the centeral storage manager route
+
  app.get('/csm',(req,res)=>{
     res.render('centra-sm',{
         CSMfullName:CSMfullName
     });
   });
+
 
 //CSM--checkReport route
 app.get('/checkReport',(req,res)=>{
@@ -237,6 +256,7 @@ app.get('/checkReport',(req,res)=>{
   }
       );
 });
+
 //CSM--order route 
 app.get('/order',(req,res)=>{
     res.render('CentralSM/order',{
@@ -262,7 +282,10 @@ app.get('/casher_customerOrder',(req,res)=>{
   //casher-neworder route 
   app.get('/Casher_NewOrder',(req,res)=>{
     res.render('casher/newOrder',{
-        casherfullName:casherfullName
+        casherfullName:casherfullName,
+        totalmenus_Burger:totalmenus_Burger, 
+        totalmenus_Pizza : totalmenus_Pizza, 
+        totalmenus_Drink : totalmenus_Drink
     })
  });
  //casher -report route 
@@ -271,7 +294,197 @@ app.get('/casher_customerOrder',(req,res)=>{
         casherfullName:casherfullName
     })
  });
+
+
+
+//logistic 
+//SSM
+//customer 
+
+
+
+
+//sample data ....
+
+app.get('/viewOrdersOfDeliveryAgent',(req,res)=>{
+    let ordersfrom=[{
+      
+        DestinationPlace:'Bole',
+        NumberOfCars:5,
+        ArrivalTime:'10:54 AM',
+        DestinationTime:'11:05 AM'
+    },
+    {
+        DestinationPlace:'4-kil0',
+        NumberOfCars:5,
+        ArrivalTime:'1:54 AM',
+        DestinationTime:'1:05 AM'
+  
+      }
+]
+  res.render('Logistic/viewOrdersOfDeliveryAgent',{
+        ordersfrom:ordersfrom,
+        logisticfullname:logisticfullname
+
+  }
+      );
+});
+
+//logistic ---orders from CSM route 
+
+app.get('/viewOrderofCSM',(req,res)=>{
+    res.render('Logistic/viewOrderofCSM',{
+        logisticfullname:logisticfullname
+       
+    });
+  });
+
+   //logistic  --orders from purcheser route 
+ app.get('/viewOrdersOfpurcheser',(req,res)=>{
+    let ordersfrom=[{
+      
+        DestinationPlace:'merekato',
+        NumberOfCars:5,
+        ArrivalTime:'10:54 AM',
+        DestinationTime:'11:05 AM'
+    },
+    {
+        DestinationPlace:'merekato',
+        NumberOfCars:3,
+        ArrivalTime:'1:54 AM',
+        DestinationTime:'1:05 AM'
+  
+      }
+]
+    res.render('Logistic/viewOrdersOfpurcheser',{
+        logisticfullname:logisticfullname
+    })
+ });
  
+ 
+
+ // customer 
+
+ app.get('/customer/vieworder',(req,res)=>{
+    res.render('customer/viewOrders',{
+        customerfullname:customerfullname,
+        totalmenus_Burger:totalmenus_Burger, 
+        totalmenus_Pizza : totalmenus_Pizza, 
+        totalmenus_Drink : totalmenus_Drink
+    })
+ });
+
+
+ app.get('/customer/comment',(req,res)=>{
+    res.render('customer/comment',{
+        customerfullname:customerfullname
+    })
+ });
+ 
+//SSM--order route
+app.get('/orders',(req,res)=>{
+    let orders=[{
+      SortOrder:1,
+      DishName:'corn_soup',
+      takeAway:'yes',
+      Done:'yes'
+
+    },
+    {
+      SortOrder:2,
+      DishName:'Burger',
+      takeAway:'no',
+      Done:'yes'
+
+  
+      },
+      {
+        SortOrder:3,
+        DishName:"pizza",
+        takeAway:"yes",
+        Done:"yes"
+  
+    
+        }
+  ]
+
+  res.render('shopSM/orders',{
+        orders:orders,
+        shopSMfullName:shopSMfullName
+
+  }
+      );
+});
+
+ 
+//shopSM--reportfromcashier route 
+
+app.get('/reportsfromcashier',(req,res)=>{
+    res.render('shopSM/reportsfromcashier',{
+        shopSMfullName:shopSMfullName
+       
+    });
+  });
+   //shopSM -order route 
+ app.get('/shopSM/orders',(req,res)=>{
+    res.render('shopSM/orders',{
+        shopSMfullName:shopSMfullName
+    })
+ });
+
+
+
+ //sample data .... later changed when we finish our databse 
+
+ app.get('/sendorders',(req,res)=>{
+    let sendorders=[{
+      SortOrder:1,
+      Name:"carrot",
+      amount:'50 kilo'
+
+    },
+    {
+      SortOrder:2,
+      Name:'onion',
+      amount:'10 kilo'
+
+  
+      },
+      {
+        SortOrder:3,
+        Name:'salad',
+        amount:'7 kilo'
+    
+  
+    
+        }
+  ]
+
+  res.render('shopSM/sendorders',{
+        sendorders:sendorders,
+        shopSMfullName:shopSMfullName
+
+  }
+      );
+});
+
+
+ 
+
+//shopSM--SendOrders route 
+app.get('/sendorders',(req,res)=>{
+    res.render('shopSM/sendorders',{
+        shopSMfullName:shopSMfullName
+
+    });
+  });
+  //shopSM--register route 
+app.get('/registeration',(req,res)=>{
+    res.render('shopSM/registeration',{
+        shopSMfullName:shopSMfullName
+
+    });
+  });
 
 const port = 3000;
 app.listen(port,()=>{
