@@ -208,7 +208,19 @@ app.get('/', (req,res)=>{
         HomePage:home
     })
 });
+//Home contact route
+app.get('/Contact', (req,res)=>{
+    res.render('HomePages/comment',{
+        HomePage:home
+    })
+});
 
+//Homepage about route
+app.get('/About', (req,res)=>{
+    res.render('HomePages/about',{
+        HomePage:home
+    })
+});   
 
 
 

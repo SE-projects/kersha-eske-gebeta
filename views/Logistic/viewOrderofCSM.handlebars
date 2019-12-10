@@ -1,0 +1,43 @@
+ <div class="container mt-4 mb-4">
+        {{> _ordersfrom}}
+    
+       
+        <div class=" card card-body  ml-auto bg-dark">
+
+            <!-- your cood goes here  -->
+
+            <table class="table table-bordered table-light table-hover">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">Destination Place</th>
+                        <th scope="col">Number Of Cars</th>
+                        <th scope="col">Arrival Time</th>
+                        <th scope="col">Destination Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each ordersfrom}}
+                    <tr>
+
+                        <td>{{DestinationPlace}}</td>
+                        <td>{{NumberOfCars}}</td>
+                        <td>{{ArrivalTime}}</td>
+                        <td>{{DestinationTime}}</td>
+                    </tr>
+                    {{else}}
+                    {{/each}}
+
+                </tbody>
+            </table>
+            <!--/end -->
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
