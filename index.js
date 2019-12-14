@@ -19,8 +19,18 @@ mongoose.connect('mongodb://localhost/kersha-eske-gebeta')
         console.log('mongoDB connected....')
     })
     .catch (err=>console.log(err));
+const app = express(); 
+const mongoose = require('mongoose');
 //constant variables 
 
+mongoose.Promise = global.Promise
+
+
+mongoose.connect('mongodb://localhost/kersha-eske-gebeta')
+    .then(()=>{
+        console.log('mongoDB connected....')
+    })
+    .catch (err=>console.log(err));
 
 const CSMfullName = "central Manager";
 const home = "home";
