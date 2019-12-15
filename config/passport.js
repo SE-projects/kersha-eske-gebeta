@@ -23,6 +23,6 @@ module.exports = function(passport){
         done(null, customer.id); 
     });
     passport.deserializeUser((id,done)=>{
-        Passenger.findById(id).then(customer =>done (null,customer))
+        Customer.findById(id).then(customer =>done (null,customer))
     });
 }

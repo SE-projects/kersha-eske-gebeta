@@ -3,34 +3,38 @@ var exphbs = require('express-handlebars');
 const app = express();
 const passport = require('passport'); 
 const mongoose = require('mongoose'); 
+const flash=require('connect-flash');
 const session = require('express-session'); 
 const cookieParser = require ('cookie-parser'); 
 const methodOverride = require('method-override'); 
 const bodyParser = require('body-parser'); 
+const bcrypt= require('bcryptjs');
 
 
 //schema
 require('./models/Customer');
 
+// passport config
+require('./config/passport')(passport); 
+const auth = require('./routes/auth');
+const profileChange = require('./routes/ProfileChange'); 
+app.use(cookieParser());
+//BodyParser Middle Ware
+app.use(bodyParser.urlencoded({extended : false})); 
+app.use(bodyParser.json()); 
+
+
 
 //mongoose middleware
-mongoose.connect('mongodb://localhost/kersha-eske-gebeta')
+mongoose.connect('mongodb://localhost/kersha-eske-gebeta' , {useNewUrlParser: true})
     .then(()=>{
         console.log('mongoDB connected....')
     })
     .catch (err=>console.log(err));
-const app = express(); 
-const mongoose = require('mongoose');
-//constant variables 
+
 
 mongoose.Promise = global.Promise
 
-
-mongoose.connect('mongodb://localhost/kersha-eske-gebeta')
-    .then(()=>{
-        console.log('mongoDB connected....')
-    })
-    .catch (err=>console.log(err));
 
 const CSMfullName = "central Manager";
 const home = "home";
@@ -39,6 +43,46 @@ const casherfullName = "casherfullName";
 const purchaserfullName = "purchaserfullName";
 const SSMfullName = "SSMfullName";
 const MerchantName = "MerchantName";
+ 
+//working area for validatoin
+
+//schema
+require('./models/User');
+const user=mongoose.model('user');
+
+//sample data to log into the page 
+//use the email
+//and password filde
+const newUser=new user({
+    fullName:'check',
+    email:'check@gmail.com',
+    password:'101964',
+    phoneNumber:'0923400585',
+    location: 'addis'
+});
+
+ //encruypting the sample password
+ //this is used inorder to privent setting plane password into the database 
+bcrypt.genSalt(10, (err, salt)=> {
+    bcrypt.hash(newUser.password, salt, (err, hash)=> {
+        newUser.password=hash;
+       
+        newUser.save()
+        .then(user =>{
+            console.log('user saved :');
+        } )
+        .catch(err => {
+            console.log(err);
+            return;
+        });
+          
+    });
+});
+
+// passport config 
+require('./config/local')(passport);
+
+
 
 
 //var amountInkillo;
@@ -207,12 +251,7 @@ let totalmenus_Drink = [{
 //Express Middle Ware
 app.use(express.static('public'));
 
-//BodyParser Middle Ware
-app.use(bodyParser.urlencoded({extended : false})); 
-app.use(bodyParser.json()); 
 
-//Method Override Middle Ware
-app.use(methodOverride('_method')); 
 
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
@@ -220,21 +259,34 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 
+
 //route to handle the login with google this works only for custormers
 
-//passport config
-require('./config/passport')(passport); 
-const auth = require('./routes/auth');
-const profileChange = require('./routes/ProfileChange'); 
-app.use(cookieParser()); 
+
+//Method Override Middle Ware
+app.use(methodOverride('_method'));  
+//the express session midleware
 app.use(session({
     secret : 'secret',
-    resave : false , 
-    saveUninitialized : false
+    resave : true , 
+    saveUninitialized : true
 }));
 //passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+//flash midle ware 
+app.use(flash());
+app.post('/login',(req, res, next)=>{
+    
+    
+    passport.authenticate('local',{
+        successRedirect: '/Menu',
+        failureRedirect: '/login',
+          //failureFlash: true
+
+    })(req, res, next);
+});
+
 
 //routing Middle Ware
 app.use('/auth', auth); 
@@ -284,6 +336,7 @@ app.get('/Login', (req, res) => {
         HomePage: home
     })
 });
+
 
 //the centeral storage manager route
 
@@ -605,6 +658,7 @@ app.get('/availableItems', (req, res) => {
         onion: onion
     });
 });
+
 
 const port = 3000;
 app.listen(port, () => {
