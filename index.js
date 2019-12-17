@@ -13,7 +13,7 @@ const bcrypt= require('bcryptjs');
 
 //schema
 require('./models/Customer');
-
+const validate = require('./models/validateUser'); 
 // passport config
 require('./config/passport')(passport); 
 const auth = require('./routes/auth');
@@ -307,6 +307,29 @@ app.get('/Menu', (req, res) => {
         totalmenus_Drink: totalmenus_Drink,
         HomePage: home
     })
+});
+//create account post handler
+app.post('/CSM/CreateAccount',(req,res) => {
+    let {error}  = validate(req.body);
+    if(error){
+        res.render('CentralSM/registor', {
+            CSMfullName: CSMfullName,
+            emailAddress : "example@gmail.com",
+            errorCSM :error
+        });
+    } 
+    if (req.body.password != req.body.confirmPassword ){
+        
+            res.render('CentralSM/registor', {
+                CSMfullName: CSMfullName,
+                emailAddress : "example@gmail.com",
+                passowrdError : "password error"
+            });
+         
+    }else{
+        res.send('ok');
+    }
+    
 });
 //Home Route
 app.get('/', (req, res) => {
