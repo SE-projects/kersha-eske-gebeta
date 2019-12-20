@@ -13,12 +13,24 @@ const bcrypt= require('bcryptjs');
 
 //schema
 require('./models/Customer');
-const validate = require('./models/validateUser'); 
+const validate = require('./models/validateUser');
 // passport config
 require('./config/passport')(passport); 
 const auth = require('./routes/auth');
 const profileChange = require('./routes/ProfileChange'); 
 app.use(cookieParser());
+
+
+// schema
+require('./models/User');
+
+//passport config 
+
+require('./config/passport')(passport); 
+const passwordChange = require('./routes/PasswardChange'); 
+app.use(cookieParser());
+
+
 //BodyParser Middle Ware
 app.use(bodyParser.urlencoded({extended : false})); 
 app.use(bodyParser.json()); 
@@ -36,6 +48,9 @@ mongoose.connect('mongodb://localhost/kersha-eske-gebeta' , {useNewUrlParser: tr
 mongoose.Promise = global.Promise
 
 
+
+
+
 const CSMfullName = "central Manager";
 const home = "home";
 const casherfullName = "casherfullName";
@@ -45,6 +60,8 @@ const SSMfullName = "SSMfullName";
 const MerchantName = "MerchantName";
  
 //working area for validatoin
+
+
 
 //schema
 require('./models/User');
@@ -60,6 +77,7 @@ const newUser=new user({
     phoneNumber:'0923400585',
     location: 'addis'
 });
+
 
  //encruypting the sample password
  //this is used inorder to privent setting plane password into the database 
@@ -307,29 +325,6 @@ app.get('/Menu', (req, res) => {
         totalmenus_Drink: totalmenus_Drink,
         HomePage: home
     })
-});
-//create account post handler
-app.post('/CSM/CreateAccount',(req,res) => {
-    let {error}  = validate(req.body);
-    if(error){
-        res.render('CentralSM/registor', {
-            CSMfullName: CSMfullName,
-            emailAddress : "example@gmail.com",
-            errorCSM :error
-        });
-    } 
-    if (req.body.password != req.body.confirmPassword ){
-        
-            res.render('CentralSM/registor', {
-                CSMfullName: CSMfullName,
-                emailAddress : "example@gmail.com",
-                passowrdError : "password error"
-            });
-         
-    }else{
-        res.send('ok');
-    }
-    
 });
 //Home Route
 app.get('/', (req, res) => {
