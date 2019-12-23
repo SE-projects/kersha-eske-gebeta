@@ -1,4 +1,9 @@
- 
+ {{#if errorCSM}}
+  <div class="alert alert-danger">Please Fill the form correctly!</div>
+ {{/if}}
+ {{#if passowrdError}}
+  <div class="alert alert-danger">Please use the same password!</div>
+ {{/if}}
 <div class="container mt-4">
     {{> _csm}}
 
@@ -8,22 +13,22 @@
     
     <form method="POST" action = "/CSM/CreateAccount">
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Full Name">
+      <input type="text" name = "fullnName" class="form-control" placeholder="Full Name">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Phone Number">
+      <input type="text" name = "phoneNumber"class="form-control" placeholder="Phone Number">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" placeholder="Location">
+      <input type="text" name = "location" class="form-control" placeholder="Location">
     </div>
     <div class="form-group">
-      <input type="email" class="form-control" placeholder="Email Address">
+      <input type="email" name = "email" class="form-control" placeholder="Email Address">
     </div>
     <div class="form-group">
-      <input type="password" class="form-control" placeholder="Password">
+      <input type="password" name = "password" class="form-control" placeholder="Password">
     </div>
     <div class="form-group">
-      <input type="password" class="form-control" placeholder="Confirm Password">
+      <input type="password" name = "confirmPassword" class="form-control" placeholder="Confirm Password">
     </div>
     <div class="form-group form-check mb-2 mr-sm-2">
       <label class ="form-check-label" style="font-size:large">
