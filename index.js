@@ -1,17 +1,9 @@
 const express = require('express'); 
 var exphbs = require('express-handlebars');
 const app = express(); 
-const mongoose = require('mongoose');
 //constant variables 
 
-mongoose.Promise = global.Promise
-
-
-mongoose.connect('mongodb://localhost/kersha-eske-gebeta')
-    .then(()=>{
-        console.log('mongoDB connected....')
-    })
-    .catch (err=>console.log(err));
+var db = require("./passport/connectDb");
 
 const CSMfullName="central Manager";
 const home="home";
@@ -21,7 +13,8 @@ const purchaserfullName="purchaserfullName";
 const SSMfullName="SSMfullName";
 const MerchantName="MerchantName";
 
-
+var addtocart=require("./passport/routes/index");
+var login = require('./passport/routes/Login');
 //var amountInkillo;
 //sample data for ratings
 let ratings=[{
@@ -189,7 +182,6 @@ let totalmenus_Drink =[{
 //Middle Wares
 app.use(express.static('public'));
 
-
 app.engine('handlebars' , exphbs({
     defaultLayout: 'main'
 }));
@@ -239,11 +231,7 @@ app.get('/About', (req,res)=>{
   //the centeral storage manager route
 
    //Homepage Login route
-app.get('/Login', (req,res)=>{
-    res.render('HomePages/login',{
-        HomePage:home
-    })
-});
+
 
 //the centeral storage manager route
 
@@ -569,3 +557,6 @@ app.get('/CSM_Orders',(req,res)=>{
         onion:onion
     });
   });
+
+app.use("/addtocart",addtocart);
+app.use('/login', login);
