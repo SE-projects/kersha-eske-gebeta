@@ -629,8 +629,14 @@ app.get('/registeration', (req, res) => {
     });
 });
 
+
+
+
+
 //Its related to pursher only
 //the purchasers route
+
+//new update here !
 
 
 app.get('/purshaser', (req, res) => {
@@ -642,18 +648,26 @@ app.get('/purshaser', (req, res) => {
         onion: onion
     });
 });
-app.get('/CSM_Orders', (req, res) => {
-    res.render('purchaser/CSMOrders', {
-        purchaserfullName: purchaserfullName
 
+
+app.get('/CSMOrders', (req, res) => {
+    res.render('purchaser/CSMOrders', {
+        purchaserfullName: purchaserfullName,
+        requested_items: requested_items,
+        tomato: tomato,
+        carrot: carrot,
+        onion: onion
     });
 });
+
 
 app.get('/request', (req, res) => {
     res.render('purchaser/request', {
         purchaserfullName: purchaserfullName
     });
 });
+
+
 
 app.get('/ssmRegistor', (req, res) => {
     res.render('ssm_registor', {
