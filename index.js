@@ -18,9 +18,8 @@ const bcrypt= require('bcryptjs');
 //schema
 require('./models/Customer');
 const validate = require('./models/validateUser');
-// passport config
-require('./config/passport')(passport); 
-const auth = require('./routes/auth');
+
+
 const profileChange = require('./routes/ProfileChange'); 
 app.use(cookieParser());
 
@@ -41,17 +40,6 @@ app.use(bodyParser.json());
 
 
 
-//mongoose middleware
-/*mongoose.connect('mongodb://localhost/kersha-eske-gebeta' , {useNewUrlParser: true})
-    .then(()=>{
-        console.log('mongoDB connected....')
-    })
-    .catch (err=>console.log(err));
-
-
-mongoose.Promise = global.Promise*/
-
-
 
 
 
@@ -67,39 +55,62 @@ const MerchantName = "MerchantName";
 
 
 
-//schema
+//Loding the schemas (tables of our program in database) ..use this for your works 
 require('./models/User');
 const user=mongoose.model('user');
 
-//sample data to log into the page 
-//use the email
-//and password filde
-const newUser=new user({
-    fullName:'check',
-    email:'check@gmail.com',
-    password:'101964',
-    phoneNumber:'0923400585',
-    location: 'addis'
-});
+require('./models/Comment');
+const Comment=mongoose.model('Comment');
+
+
+require('./models/Orders');
+const Order=mongoose.model('Orders');
+
+require('./models/Delivers');
+const Deliver=mongoose.model('Deliver');
+
+require('./models/Manages');
+const Manager=mongoose.model('Manages');
+
+
+require('./models/MenuOftheday');
+const MenuOftheday=mongoose.model('MenuOftheDay');
+
+require('./models/Merchant_Item');
+const MerchantItem=mongoose.model('Item');
+
+require('./models/Report');
+const Report=mongoose.model('Report');
+
+require('./models/Request');
+const Request=mongoose.model('Request');
+
+require('./models/TotalMenu');
+const TotalMenu=mongoose.model('TotalMenu');
+
+//end of our schem definatino
+
+
+        
 
 
  //encruypting the sample password
- //this is used inorder to privent setting plane password into the database 
-bcrypt.genSalt(10, (err, salt)=> {
-    bcrypt.hash(newUser.password, salt, (err, hash)=> {
-        newUser.password=hash;
+
+// bcrypt.genSalt(10, (err, salt)=> {
+//     bcrypt.hash(newUser.password, salt, (err, hash)=> {
+//         newUser.password=hash;
        
-        newUser.save()
-        .then(user =>{
-            console.log('user saved :');
-        } )
-        .catch(err => {
-            console.log(err);
-            return;
-        });
+//         newUser.save()
+//         .then(user =>{
+//             console.log('user saved :');
+//         } )
+//         .catch(err => {
+//             console.log(err);
+//             return;
+//         });
           
-    });
-});
+//     });
+// });
 
 // passport config 
 require('./config/local')(passport);
@@ -310,7 +321,7 @@ app.post('/login',(req, res, next)=>{
 
 
 //routing Middle Ware
-app.use('/auth', auth); 
+
 app.use('/ProfileChange' , profileChange);
 //end of google login option
 

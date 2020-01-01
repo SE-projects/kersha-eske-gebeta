@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router(); 
-const {centralManager , validate} = require('../models/CentralStorageManager'); 
+const {centralManager , validate} = require('../models/User'); 
 
 router.put('/:emailAddress', (req,res) =>{
     const {error} = validate(req.body); 
