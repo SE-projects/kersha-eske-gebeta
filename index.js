@@ -14,6 +14,10 @@ const methodOverride = require('method-override');
 const bodyParser = require('body-parser'); 
 const bcrypt= require('bcryptjs');
 
+//global varible email
+
+global.LogedUser = " ";
+global.AccountType="";
 
 //schema
 require('./models/Customer');
@@ -308,11 +312,35 @@ app.use(passport.initialize());
 app.use(passport.session());
 //flash midle ware 
 app.use(flash());
+
+//post from the login form 
 app.post('/login',(req, res, next)=>{
-    
-    
+    //check whic type of user is loged in 
+    var renderPath;
+    if(AccountType=='csm')
+      renderPath='/csm';
+    else if(AccountType=='cashier')
+      renderpath='/casher_customerOrder';
+    else if(AccountType=='logistic')
+      renderpath='/viewOrdersOfDeliveryAgent'; 
+    else if(AccountType=='customer')
+      renderpath='/customer/comment'; 
+    else if(AccountType=='ssm')
+      renderpath='/orders'; 
+    else if(AccountType=='purchaser')
+      renderpath='/availableItems'; 
+    else if(AccountType=='merchant')
+      renderpath='/viewItems'; 
+    else if(AccountType=='cooker')
+      renderPath='/cooker';
+      else if (AccountType=='deliveryAgent')
+      renderPath='/deliveryAgent';
+
+      //render the page after login 
     passport.authenticate('local',{
-        successRedirect: '/Menu',
+       
+        successRedirect: renderPath,
+        
         failureRedirect: '/login',
           //failureFlash: true
 
@@ -447,7 +475,7 @@ app.get('/Casher_Report', (req, res) => {
 
 
 
-//sample data ....
+//logistic Main route 
 
 app.get('/viewOrdersOfDeliveryAgent', (req, res) => {
     let ordersfrom = [{
@@ -559,6 +587,11 @@ app.get('/orders', (req, res) => {
     );
 });
 
+app.get('/ssmRegistor', (req, res) => {
+    res.render('ssm_registor', {
+        SSMfullName: SSMfullName
+    });
+});
 
 //shopSM--reportfromcashier route 
 
@@ -642,6 +675,16 @@ app.get('/purshaser', (req, res) => {
         onion: onion
     });
 });
+//?? why do we use this 
+app.get('/availableItems', (req, res) => {
+    res.render('availableItems', {
+        purchaserfullName: purchaserfullName,
+        requested_items: requested_items,
+        tomato: tomato,
+        carrot: carrot,
+        onion: onion
+    });
+  });
 app.get('/CSM_Orders', (req, res) => {
     res.render('purchaser/CSMOrders', {
         purchaserfullName: purchaserfullName
@@ -655,11 +698,6 @@ app.get('/request', (req, res) => {
     });
 });
 
-app.get('/ssmRegistor', (req, res) => {
-    res.render('ssm_registor', {
-        SSMfullName: SSMfullName
-    });
-});
 
 app.get('/viewRatings', (req, res) => {
     res.render('view_ratings', {
@@ -677,15 +715,7 @@ app.get('/viewItems', (req, res) => {
         UploadedItems: UploadedItems
     });
 });
-app.get('/availableItems', (req, res) => {
-    res.render('availableItems', {
-        purchaserfullName: purchaserfullName,
-        requested_items: requested_items,
-        tomato: tomato,
-        carrot: carrot,
-        onion: onion
-    });
-  });
+
 
 app.use("/addtocart",addtocart);
 app.use('/login', login);
