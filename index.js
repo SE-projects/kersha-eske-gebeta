@@ -22,6 +22,9 @@ const validate = require('./models/validateUser');
 require('./config/passport')(passport); 
 const auth = require('./routes/auth');
 const profileChange = require('./routes/ProfileChange'); 
+const register = require('./routes/register.js');
+
+
 app.use(cookieParser());
 
 
@@ -71,35 +74,40 @@ const MerchantName = "MerchantName";
 require('./models/User');
 const user=mongoose.model('user');
 
+//router middleware
+app.use('/register' , register); 
+
+
 //sample data to log into the page 
 //use the email
 //and password filde
-const newUser=new user({
-    fullName:'check',
-    email:'check@gmail.com',
-    password:'101964',
-    phoneNumber:'0923400585',
-    location: 'addis'
-});
+// const newUser=new user({
+//     fullName:'check',
+//     email:'csm @gmail.com',
+//     password:'123456789',
+//     phoneNumber:'0923400585',
+//     location: 'addis',
+//     userType : 'csm'
+// });
 
 
- //encruypting the sample password
- //this is used inorder to privent setting plane password into the database 
-bcrypt.genSalt(10, (err, salt)=> {
-    bcrypt.hash(newUser.password, salt, (err, hash)=> {
-        newUser.password=hash;
+//  //encruypting the sample password
+//  //this is used inorder to privent setting plane password into the database 
+// bcrypt.genSalt(10, (err, salt)=> {
+//     bcrypt.hash(newUser.password, salt, (err, hash)=> {
+//         newUser.password=hash;
        
-        newUser.save()
-        .then(user =>{
-            console.log('user saved :');
-        } )
-        .catch(err => {
-            console.log(err);
-            return;
-        });
+//         newUser.save()
+//         .then(user =>{
+//             console.log('user saved :');
+//         } )
+//         .catch(err => {
+//             console.log(err);
+//             return;
+//         });
           
-    });
-});
+//     });
+// });
 
 // passport config 
 require('./config/local')(passport);
