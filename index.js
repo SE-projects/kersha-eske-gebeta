@@ -25,6 +25,9 @@ const validate = require('./models/validateUser');
 
 
 const profileChange = require('./routes/ProfileChange'); 
+const register = require('./routes/register.js');
+
+
 app.use(cookieParser());
 
 
@@ -662,8 +665,14 @@ app.get('/registeration', (req, res) => {
     });
 });
 
+
+
+
+
 //Its related to pursher only
 //the purchasers route
+
+//new update here !
 
 
 app.get('/purshaser', (req, res) => {
@@ -675,22 +684,18 @@ app.get('/purshaser', (req, res) => {
         onion: onion
     });
 });
-//?? why do we use this 
-app.get('/availableItems', (req, res) => {
-    res.render('availableItems', {
+
+
+app.get('/CSMOrders', (req, res) => {
+    res.render('purchaser/CSMOrders', {
         purchaserfullName: purchaserfullName,
         requested_items: requested_items,
         tomato: tomato,
         carrot: carrot,
         onion: onion
     });
-  });
-app.get('/CSM_Orders', (req, res) => {
-    res.render('purchaser/CSMOrders', {
-        purchaserfullName: purchaserfullName
-
-    });
 });
+
 
 app.get('/request', (req, res) => {
     res.render('purchaser/request', {
@@ -698,6 +703,13 @@ app.get('/request', (req, res) => {
     });
 });
 
+
+
+app.get('/ssmRegistor', (req, res) => {
+    res.render('ssm_registor', {
+        SSMfullName: SSMfullName
+    });
+});
 
 app.get('/viewRatings', (req, res) => {
     res.render('view_ratings', {
@@ -716,7 +728,11 @@ app.get('/viewItems', (req, res) => {
     });
 });
 
-
+//log out functionality 
+app.get('/logout',(req,res)=>{
+req.logout();
+res.redirect('/login');
+})
 app.use("/addtocart",addtocart);
 app.use('/login', login);
 

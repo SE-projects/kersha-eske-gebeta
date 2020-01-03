@@ -1,59 +1,81 @@
- {{#if errorCSM}}
-  <div class="alert alert-danger">Please Fill the form correctly!</div>
- {{/if}}
- {{#if passowrdError}}
-  <div class="alert alert-danger">Please use the same password!</div>
- {{/if}}
+
+{{#if signupError}}
+<div class="alert alert-danger alert-dismissible mt-2">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Failed to Create Account!</strong> {{signupError}}.
+</div>
+{{/if}}
+{{#if success}}
+<div class="alert alert-success alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Account Created Successfully! </strong>
+</div>
+{{/if}}
+
 <div class="container mt-4">
-    {{> _csm}}
+  {{> _csm}}
 
- <div class=" card card-body  ml-auto bg-dark">
+  <div class=" card card-body  ml-auto bg-dark">
 
-     <!-- your cood goes here  -->
-    
-    <form method="POST" action = "/CSM/CreateAccount">
-    <div class="form-group">
-      <input type="text" name = "fullnName" class="form-control" placeholder="Full Name">
-    </div>
-    <div class="form-group">
-      <input type="text" name = "phoneNumber"class="form-control" placeholder="Phone Number">
-    </div>
-    <div class="form-group">
-      <input type="text" name = "location" class="form-control" placeholder="Location">
-    </div>
-    <div class="form-group">
-      <input type="email" name = "email" class="form-control" placeholder="Email Address">
-    </div>
-    <div class="form-group">
-      <input type="password" name = "password" class="form-control" placeholder="Password">
-    </div>
-    <div class="form-group">
-      <input type="password" name = "confirmPassword" class="form-control" placeholder="Confirm Password">
-    </div>
-    <div class="form-group form-check mb-2 mr-sm-2">
-      <label class ="form-check-label" style="font-size:large">
-        <input class ="form-check-input" type ="radio" name="radio">Shop Manager
-      </label>
-    </div>
-    <div class="form-group form-check mb-2 mr-sm-2">
-      <label class ="form-check-label">
-        <input class ="form-check-input" type ="radio" name="radio" style="font-size:large">Purchaser
-      </label>
-    </div>
-    <div class="form-group form-check mb-2 mr-sm-2">
-      <label class ="form-check-label" style="font-size:large">
-        <input class ="form-check-input" type ="radio" name="radio">Logistic Departments
-      </label>
-    </div>
-     <button type="submit" class="btn btn-primary btn-block">Create Account</button>
-  </form>
-  <!--/end -->
-        </div>
- </div>
-    </div>
-   
-    </div>
+    <!-- your cood goes here  -->
+
+    <form method="POST" action="/register/csm/createAccount">
+      <div class="form-group">
+        <input type="text" value="{{fullName}}" name="fullName" class="form-control" placeholder="Full Name">
+      </div>
+      <div class="form-group">
+        <input type="text" value="{{phoneNumber}}" name="phoneNumber" class="form-control" placeholder="Phone Number">
+      </div>
+      <div class="form-group">
+        <input type="text" value="{{location}}" name="location" class="form-control" placeholder="Location">
+      </div>
+      <div class="form-group">
+        <input type="email" value="{{email}}" name="Email" class="form-control" placeholder="Email Address">
+      </div>
+      <div class="form-group">
+        <input type="password" name="password" class="form-control" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <input type="password" name="confirmPassword" class="form-control" placeholder="Confirm Password">
+      </div>
+      <div class="form-group form-check mb-2 mr-sm-2">
+        <label class="form-check-label" style="font-size:large">
+          <input class="form-check-input" type="radio" name="radio" value="ShopManager">Shop Manager
+        </label>
+      </div>
+      <div class="form-group form-check mb-2 mr-sm-2">
+        <label class="form-check-label">
+          <input class="form-check-input" type="radio" name="radio" value="Purchaser" style="font-size:large">Purchaser
+        </label>
+      </div>
+      <div class="form-group form-check mb-2 mr-sm-2">
+        <label class="form-check-label" style="font-size:large">
+          <input class="form-check-input" type="radio" name="radio" value="LogisticDepartment">Logistic Departments
+        </label>
+      </div>
+      <div class="form-group form-check mb-2 mr-sm-2">
+        <label class="form-check-label" style="font-size:large">
+          Branches
+        </label>
+      </div>
+      <div class="form-group form-check mb-2 mr-sm-2">
+        <label class="form-check-label" style="font-size:large">
+          <input class="form-check-input" type="branch" name="radioBranch" value="Megnagna" checked>Megnagna Departments
+        </label>
+      </div>
+      <div class="form-group form-check mb-2 mr-sm-2">
+        <label class="form-check-label" style="font-size:large">
+          <input class="form-check-input" type="branch" name="radioBranch" value="Bole" checked>Bole Departments
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+    </form>
+    <!--/end -->
   </div>
-
+</div>
 </div>
 
+</div>
+</div>
+
+</div>
