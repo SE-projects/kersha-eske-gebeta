@@ -1,28 +1,43 @@
 <style>
-   body {
-  background: url('/img/login/background3.jpg') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
-}
-  .bg{
+  body {
+    background: url('/img/login/background3.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+  }
+
+  .bg {
     background-color: #373E44;
   }
 </style>
-
+{{#if signupError}}
+<div class="alert alert-danger alert-dismissible mt-2">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Failed to Create Account!</strong> {{signupError}}.
+</div>
+{{/if}}
+{{#if success}}
+<div class="alert alert-success alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Account Created Successfully! </strong> {{success}}.
+</div>
+{{/if}}
 <div class="row backgroud">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-8 ">
-        <br><br><br>
-        <div class = "ml-4">
-        <h1 style="font-size:80px; color:#fff">Get You Delivery</h1>
-        <h1 style="font-size:80px; align-content:center;color: #fff;" class="ml-auto">Fast</h1>         
-        </div>
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-8 ">
+    <br><br><br>
+    <div class="ml-4">
+      <h1 style="font-size:80px; color:#fff">Get You Delivery</h1>
+      <h1 style="font-size:80px; align-content:center;color: #fff;" class="ml-auto">Fast</h1>
     </div>
+  </div>
 
+<<<<<<< HEAD
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 mt-4">
         <div class="jumbotron text-center bg mt-4 mr-4">
-              
+              {{#if error}}
+              <div class="alert alert-danger">{{error}}</div>
+              {{/if}}
                 <img src="/img/login/login.png" height="50px">
                 <h1 >Login</h1><br>
          
@@ -40,7 +55,31 @@
   </form>
   <p style="color :#fff">Sign in using  <a class="btn btn-link"  href = "/auth/google">GoogleAccount</a></p>
   <p style="color :#fff">Creat an account? <button class="btn btn-link" data-toggle="modal" data-target="#Signup">Signup</button></p>
+=======
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4 mt-4">
+    <div class="jumbotron text-center bg mt-4 mr-4">
+
+      <img src="/img/login/login.png" height="50px">
+      <h1>Login</h1><br>
+
+      <form action="/login" method="post">
+        <div class="form-group">
+          <input type="email" name="email" class="form-control" id="email" placeholder="User Name" value={{email}}>
+        </div>
+        <div class="form-group">
+          <input type="password" name="password" class="form-control" id="password" placeholder="Password"
+            value="{{pasword}}">
+        </div>
+
+
+        <button type="button" class="btn btn-link" href="#">Forget password?</button>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+      <p style="color :#fff">Sign in using <a class="btn btn-link" href="/auth/google">GoogleAccount</a></p>
+      <p style="color :#fff">Creat an account? <button class="btn btn-link" data-toggle="modal"
+          data-target="#Signup">Signup</button></p>
+>>>>>>> 49c2ba652843a6ce7a5a47a5e298177ae1121993
       {{> _signup}}
     </div>
-</div>
+  </div>
 </div>

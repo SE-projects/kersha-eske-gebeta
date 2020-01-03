@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Order</title>
+     <!-- Material Design Bootstrap -->
+     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet"> -->
+  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+      <style>
+        .checkbox-lg .custom-control-label::before, 
+        .checkbox-lg .custom-control-label::after {
+        top: .8rem;
+        width: 1.55rem;
+        height: 1.55rem;
+        }
+
+        .checkbox-lg .custom-control-label {
+        padding-top: 13px;
+        padding-left: 6px;
+        }
+
+
+        .checkbox-xl .custom-control-label::before, 
+        .checkbox-xl .custom-control-label::after {
+        top: 1.2rem;
+        width: 1.85rem;
+        height: 1.85rem;
+        }
+
+        .checkbox-xl .custom-control-label {
+        padding-top: 23px;
+        padding-left: 10px;
+        }
+        .blue-container{
+            background-color: rgba(165, 175, 172, 0.781);
+            border-radius: 20px;
+            max-height: 100%;
+            overflow:scroll;
+        }
+        .checkbox-container{
+            border-bottom: black 2px solid;
+            height: 50%;
+        }
+        .checkbox-img{
+            height: 200px;
+            float: left;
+        }
+        .inputs{
+            float: right;
+        }
+        .card{
+            background-color:transparent;
+            border:none;
+            border-bottom: #0a0a0a solid 2px;
+
+        }
+        .drop{
+            position: relative;
+            top: 100%;
+            margin-top: 30%;
+            left: 30%;
+        }
+    
+    </style>
+</head>
+<body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <img class="navbar-brand" href="#" src="static/images/Logo.png" height="100px"  />
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse mx-5" id="navbarNavDropdown">
+                  <ul class="navbar-nav mx-5">
+                    <li class="nav-item mx-5">
+                      <a class="nav-link" href="#">View Order</a>
+                    </li>
+                    <li class="nav-item mx-5">
+                      <a class="nav-link" href="#">Menus</a>
+                    </li>
+                    <li class="nav-item mx-5">
+                      <a class="nav-link" href="#">Comment</a>
+                    </li>
+                    <li class="nav-item dropdown mx-5">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Kidus B
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">View Cart</a>
+                        <a class="dropdown-item" href="#">Account</a>
+                        <a class="dropdown-item" href="#">Change Password</a>
+                        <a class="dropdown-item" href="#">Logout</a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-8 blue-container">
+                        <form class="m-5 h-100">
+                            <div class="card pb-5">
+                                    <div class="custom-control custom-checkbox checkbox-xl">
+                                            <img src="static/images/pizza.jpeg"  class="checkbox-img"/>
+                                            <div class="inputs">
+                                            <label class="custom-control-label display-4" for="checkbox-3"><small> Name </small></label>
+                                            
+                                            <input type="checkbox" class="custom-control-input" id="checkbox-3" checked="">
+                                            
+                                          </div>
+                                          <div class="btn-group drop">
+                                                <button class="btn btn-secondary btn-sm" type="button">
+                                                  10kilo
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                  <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                  ...
+                                                </div>
+                                              </div>
+                                    </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+
+                </div>
+
+                    
+            </div>
+            <footer class="page-footer font-small bg-dark text-light pt-4" >
+
+                    <!-- Footer Links -->
+                    <div class="container-fluid text-center text-md-left">
+                  
+                      <!-- Grid row -->
+                      <div class="row">
+                  
+                        <!-- Grid column -->
+                        <div class="col-md-6 mt-md-0 mt-3">
+                  
+                          <!-- Content -->
+                          <h5 class="text-uppercase">Footer Content</h5>
+                          <p>Here you can use rows and columns to organize your footer content.</p>
+                  
+                        </div>
+                        <!-- Grid column -->
+                  
+                        <hr class="clearfix w-100 d-md-none pb-3">
+                  
+                    
+                  
+                      </div>
+                      <!-- Grid row -->
+                  
+                    </div>
+                    <!-- Footer Links -->
+                  
+                    <!-- Copyright -->
+                    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+                      <a href="#" class="text-light"> Ke'Ersha eske Gebeta</a>
+                    </div>
+                    <!-- Copyright -->
+                  
+                  </footer>
+                  <!-- Footer -->
+            
+                <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+            
+</body>
+</html>

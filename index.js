@@ -14,14 +14,20 @@ const methodOverride = require('method-override');
 const bodyParser = require('body-parser'); 
 const bcrypt= require('bcryptjs');
 
+//global varible email
+
+global.LogedUser = " ";
+global.AccountType="";
 
 //schema
 require('./models/Customer');
 const validate = require('./models/validateUser');
-// passport config
-require('./config/passport')(passport); 
-const auth = require('./routes/auth');
+
+
 const profileChange = require('./routes/ProfileChange'); 
+const register = require('./routes/register.js');
+
+
 app.use(cookieParser());
 
 
@@ -41,17 +47,6 @@ app.use(bodyParser.json());
 
 
 
-//mongoose middleware
-/*mongoose.connect('mongodb://localhost/kersha-eske-gebeta' , {useNewUrlParser: true})
-    .then(()=>{
-        console.log('mongoDB connected....')
-    })
-    .catch (err=>console.log(err));
-
-
-mongoose.Promise = global.Promise*/
-
-
 
 
 
@@ -67,39 +62,62 @@ const MerchantName = "MerchantName";
 
 
 
-//schema
+//Loding the schemas (tables of our program in database) ..use this for your works 
 require('./models/User');
 const user=mongoose.model('user');
 
-//sample data to log into the page 
-//use the email
-//and password filde
-const newUser=new user({
-    fullName:'check',
-    email:'check@gmail.com',
-    password:'101964',
-    phoneNumber:'0923400585',
-    location: 'addis'
-});
+require('./models/Comment');
+const Comment=mongoose.model('Comment');
+
+
+require('./models/Orders');
+const Order=mongoose.model('Orders');
+
+require('./models/Delivers');
+const Deliver=mongoose.model('Deliver');
+
+require('./models/Manages');
+const Manager=mongoose.model('Manages');
+
+
+require('./models/MenuOftheday');
+const MenuOftheday=mongoose.model('MenuOftheDay');
+
+require('./models/Merchant_Item');
+const MerchantItem=mongoose.model('Item');
+
+require('./models/Report');
+const Report=mongoose.model('Report');
+
+require('./models/Request');
+const Request=mongoose.model('Request');
+
+require('./models/TotalMenu');
+const TotalMenu=mongoose.model('TotalMenu');
+
+//end of our schem definatino
+
+
+        
 
 
  //encruypting the sample password
- //this is used inorder to privent setting plane password into the database 
-bcrypt.genSalt(10, (err, salt)=> {
-    bcrypt.hash(newUser.password, salt, (err, hash)=> {
-        newUser.password=hash;
+
+// bcrypt.genSalt(10, (err, salt)=> {
+//     bcrypt.hash(newUser.password, salt, (err, hash)=> {
+//         newUser.password=hash;
        
-        newUser.save()
-        .then(user =>{
-            console.log('user saved :');
-        } )
-        .catch(err => {
-            console.log(err);
-            return;
-        });
+//         newUser.save()
+//         .then(user =>{
+//             console.log('user saved :');
+//         } )
+//         .catch(err => {
+//             console.log(err);
+//             return;
+//         });
           
-    });
-});
+//     });
+// });
 
 // passport config 
 require('./config/local')(passport);
@@ -297,11 +315,35 @@ app.use(passport.initialize());
 app.use(passport.session());
 //flash midle ware 
 app.use(flash());
+
+//post from the login form 
 app.post('/login',(req, res, next)=>{
-    
-    
+    //check whic type of user is loged in 
+    var renderPath;
+    if(AccountType=='csm')
+      renderPath='/csm';
+    else if(AccountType=='cashier')
+      renderpath='/casher_customerOrder';
+    else if(AccountType=='logistic')
+      renderpath='/viewOrdersOfDeliveryAgent'; 
+    else if(AccountType=='customer')
+      renderpath='/customer/comment'; 
+    else if(AccountType=='ssm')
+      renderpath='/orders'; 
+    else if(AccountType=='purchaser')
+      renderpath='/availableItems'; 
+    else if(AccountType=='merchant')
+      renderpath='/viewItems'; 
+    else if(AccountType=='cooker')
+      renderPath='/cooker';
+      else if (AccountType=='deliveryAgent')
+      renderPath='/deliveryAgent';
+
+      //render the page after login 
     passport.authenticate('local',{
-        successRedirect: '/Menu',
+       
+        successRedirect: renderPath,
+        
         failureRedirect: '/login',
           //failureFlash: true
 
@@ -310,7 +352,7 @@ app.post('/login',(req, res, next)=>{
 
 
 //routing Middle Ware
-app.use('/auth', auth); 
+
 app.use('/ProfileChange' , profileChange);
 //end of google login option
 
@@ -436,7 +478,7 @@ app.get('/Casher_Report', (req, res) => {
 
 
 
-//sample data ....
+//logistic Main route 
 
 app.get('/viewOrdersOfDeliveryAgent', (req, res) => {
     let ordersfrom = [{
@@ -548,6 +590,11 @@ app.get('/orders', (req, res) => {
     );
 });
 
+app.get('/ssmRegistor', (req, res) => {
+    res.render('ssm_registor', {
+        SSMfullName: SSMfullName
+    });
+});
 
 //shopSM--reportfromcashier route 
 
@@ -618,8 +665,14 @@ app.get('/registeration', (req, res) => {
     });
 });
 
+
+
+
+
 //Its related to pursher only
 //the purchasers route
+
+//new update here !
 
 
 app.get('/purshaser', (req, res) => {
@@ -631,10 +684,15 @@ app.get('/purshaser', (req, res) => {
         onion: onion
     });
 });
-app.get('/CSM_Orders', (req, res) => {
-    res.render('purchaser/CSMOrders', {
-        purchaserfullName: purchaserfullName
 
+
+app.get('/CSMOrders', (req, res) => {
+    res.render('purchaser/CSMOrders', {
+        purchaserfullName: purchaserfullName,
+        requested_items: requested_items,
+        tomato: tomato,
+        carrot: carrot,
+        onion: onion
     });
 });
 app.get('/casher/newOrder', (req, res) => {
@@ -645,11 +703,14 @@ app.get('/casher/newOrder', (req, res) => {
 });
 
 
+
 app.get('/request', (req, res) => {
     res.render('purchaser/request', {
         purchaserfullName: purchaserfullName
     });
 });
+
+
 
 app.get('/ssmRegistor', (req, res) => {
     res.render('ssm_registor', {
@@ -673,16 +734,12 @@ app.get('/viewItems', (req, res) => {
         UploadedItems: UploadedItems
     });
 });
-app.get('/availableItems', (req, res) => {
-    res.render('availableItems', {
-        purchaserfullName: purchaserfullName,
-        requested_items: requested_items,
-        tomato: tomato,
-        carrot: carrot,
-        onion: onion
-    });
-  });
 
+//log out functionality 
+app.get('/logout',(req,res)=>{
+req.logout();
+res.redirect('/login');
+})
 app.use("/addtocart",addtocart);
 app.use('/login', login);
 
