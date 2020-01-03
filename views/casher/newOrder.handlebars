@@ -1,51 +1,53 @@
 <!--you got write the code here in order to render it when the button is cliked-->
-<div class="row">
-    <div class="col">
-        {{#each totalmenus_Burger}}
-        <div class="card card-body mb-1 mt-2">
-            <img src="{{imageSource}}" style="height: 150px; width:150px">
-            <p class="ml-auto" style="font-size: 30px;color:#fc7171; ">{{unitPrice}}</p>
-            <p class>
-            <h4>{{dishName}}</h4>
-            <p>{{discription}}</p>
-            <input class ="btn btn-primary" type="checkbox"/>
-        </div>
-        {{else}}
-        <p class="mt-3">There are no Burgers provided for today!!! Please visit us later</p>
-        {{/each}}
-    </div>
-    <div class="col">
-        {{#each totalmenus_Pizza}}
-        <div class="card card-body mb-1 mt-2">
-            <img src="{{imageSource}}" style="height: 150px; width:150px">
-            <p class="ml-auto" style="font-size: 30px;color:#fc7171; ">{{unitPrice}}</p>
-            <h4>{{dishName}}</h4>
-            <p>{{discription}}</p>
-            <input type="checkbox"/>
-        </div>
 
-        {{else}}
-        <p>There are no Pizzas provided for today!!! Please visit us later</p>
-        {{/each}}
-    </div>
-    <div class="col">
-        {{#each totalmenus_Drink}}
-        <div class="card card-body mb-1 mt-2">
-            <img src="{{imageSource}}" style="height: 150px; width:150px">
-            <p class="ml-auto" style="font-size: 30px;color:#fc7171; ">{{unitPrice}}</p>
-            <h4>{{dishName}}</h4>
-            <p>{{discription}}</p>
-            <input type="checkbox"/>
-        </div>
-        {{else}}
-        <p>There are no Drinks provided for today!!! Please visit us later</p>
-        {{/each}}
-    </div>
-    
-</div>
-<div class="row container"> 
-  <div class= "col ">
-  <button class="btn btn-primary" style="float: right;">Order</button>
+<div class="jumbotron p-0 m-0">
 
-  </div>
+
+    <!-- Card content -->
+    <div class="card-body carousel-caption" style="top:37%;">
+
+        <!-- Title -->
+        
+        
+                
+
+        <div class="row justify-content-center">
+            <div class="col-md-offset-5 col-md-4">
+                  <h4 style="color: black;">Upload Order</h4>  
+                    
+                <form method="post" enctype="multipart/form-data" runat="server">
+                   
+
+                    <div class="form-login">
+                        
+                        
+                        <input type="text" class="form-control input-sm chat-input" placeholder="Insert the order's name" />
+                      
+                        <br>
+                        <textarea class="form-control input-sm chat-input" placeholder="Insert the order's description" > </textarea>
+                      
+                        <br>
+                        <input type="file" asp-for="ImageFile" class="form-control input-sm chat-input" placeholder="Insert your image file" accept="image/*" onchange="readURL(event)"/>
+                        <span class="error"></span>
+                        <br>
+                        <img id="output" class="thumbnail"/>
+                        <script>
+                            var readURL = function(event){
+                                var output = document.getElementById('output');
+                                output.src=URL.createObjectURL(event.target.files[0]);
+                            };
+                        </script>
+
+                        <div class="wrapper">
+                            <span class="group-btn">
+
+                                <button class="btn btn-primary btn-md round" runat="server" style="margin-top:5%;"> Submit <i class="fa fa-upload"></i></button>
+                            </span>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

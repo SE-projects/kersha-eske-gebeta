@@ -637,6 +637,13 @@ app.get('/CSM_Orders', (req, res) => {
 
     });
 });
+app.get('/casher/newOrder', (req, res) => {
+    res.render('casher/newOrder', {
+        casherfullName: casherfullName
+
+    });
+});
+
 
 app.get('/request', (req, res) => {
     res.render('purchaser/request', {
