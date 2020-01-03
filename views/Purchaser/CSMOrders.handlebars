@@ -1,0 +1,50 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.row{
+border-spacing: 10px;
+}
+.col{
+  border-spacing: 10px;
+  bo
+}
+</style>
+</head>
+<body>
+  <div>
+    <h3 class="orders" style="margin: 60px; color:blank; font-size:40px">Orders</h3>
+  </div>
+<div class="row" style="margin: 40px;">
+
+<div class="col">   
+        {{#each requested_items}}
+        <div class="row">
+          <div>
+            <img src="{{imageSource}}" style="height: 120px; width:150px">
+            </div>
+            <div class="col">
+            <div>
+            <h4  style="font-size: 20px;color:black;">{{name}}</h4>
+        </div>
+        
+          <div>
+            <p style="font-size: 20px;color:black; ">{{amount}}</p>    
+          </div>
+
+          </div>
+
+        </div>
+        {{/each}}
+  </div>
+ 
+  <div class="col">
+
+            <form class="form-inline my-2 my-lg-0">
+       <input class="form-control mr-sm-2" id="searchText" type="search" placeholder="Search product" aria-label="Search">
+     
+    <div><a href="/availableItems" type="button" role="button" class="btn fa fa-search"></a></div>
+    </form>
+     </div>
+</div>
+
+</body>

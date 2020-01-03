@@ -16,6 +16,7 @@ const User = new Schema({
         maxlength: 50, 
         required : true ,
         unique: true
+       
     },
     password : {
         type : String, 
@@ -38,11 +39,12 @@ const User = new Schema({
     userType : {
         type : String, 
         required : true
+       
     },
     branch :{
         type : String, 
         required : false,
-        default : null
+        default:null
     }
     
 });
